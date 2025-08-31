@@ -1,0 +1,22 @@
+plugins {
+    id 'application'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'sudoku.SudokuApp'
+}
+
+tasks.register('runUi', JavaExec) {
+    group = 'application'
+    description = 'Executa a UI Swing'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'sudoku.SudokuSwingApp'
+    if (project.hasProperty('args')) {
+        args project.property('args').toString().split(' ')
+    }
+}
